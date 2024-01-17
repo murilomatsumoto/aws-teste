@@ -1,11 +1,18 @@
 import boto3
 import os
+import pathlib
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 aws_access_key_id = os.getenv('chave_acesso')
 aws_secret_access_key = os.getenv('chave_secreta')
 bucket = os.getenv('bucket')
 file_download = os.getenv('file_download')
+print(file_download)
 file_novo = os.getenv('file_novo')
+# path_file_download = pathlib.Path(file_download)
 
 s3 = boto3.client('s3', aws_access_key_id=aws_access_key_id, aws_secret_access_key=aws_secret_access_key)
 s3.download_file(bucket, file_download, file_novo)
